@@ -89,9 +89,12 @@ When configuring the subdomain, you want to create an A record for the subdomain
 ### Create and configure an Apache Virtual Host file
 Once you've set up the subdomain with an A record pointing to the IP address of your Droplet, you will need to modify the Apache configuration that was just created for you. This is a simple change: You must add a "virtual host" configuration for your chosen subdomain. The below instructions come from the [Digital Ocean Support instructions to configure Apache virtual hosts](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts/#step-four-—-create-new-virtual-host-files) to accomplish this. *NOTE:* Focus on Step 4 and Step 5 for the purposes of this assignment. It's not necessary for you to complete the entire tutorial (unless you want to).
 
+<so basically just copy and paste the guids of step 4and 5>
+
 Start by copying Apache's default virtual host file into a new virtual host file for your domain. 
 
 `sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/YOURDOMAIN.com.conf`
+<the 'YOURDOMAIN' includes your subdomain portion so 2048.mickywoo.com.conf>
 
 Then using Nano or your favorite command line text editor, edit your new virtual host file. 
 
@@ -119,6 +122,20 @@ It should tell you that you are enabling site. Then run the command that the fee
 root@static-site:/var/www/html# systemctl reload apache2
  * Reloading web server apache2                                                                                             *
 ```
+
+```
+now if you domain doesnt load or if you make an error and have to edit your .conf 
+use 
+
+a2dissite <site> (in my case it was  sudo a2dissite 2048.mickywoo.com.conf)
+then restart 
+
+systemctl reload apache2
+
+then re enable site with: 
+ sudo a2ensite 2048.mickywoo.com.conf
+
+
 
 You should now be able to see the 2048 game at [http://sub.yourdomain.com](http://sub.yourdomain.com).
 
